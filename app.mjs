@@ -1,14 +1,14 @@
 import RLP from 'rlp'
 import Web3 from 'web3'
 
-// function decimalToHex(d, padding) {
-//     var hex = Number(d).toString(16);
-//     padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;
-//     while (hex.length < padding) {
-//         hex = "0" + hex;
-//     }
-//     return hex;
-// }
+function decimalToHex(d, padding) {
+    var hex = Number(d).toString(16);
+    padding = typeof (padding) === "undefined" || padding === null ? padding = 2 : padding;
+    while (hex.length < padding) {
+        hex = "0" + hex;
+    }
+    return hex;
+}
 
 const web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
 
@@ -35,20 +35,20 @@ console.log("END");
 let ganacheSecondAccount = ganacheAccountArr[1];
 console.log(ganacheSecondAccount);
 
-// await web3.eth.sendTransaction({from: ganacheSecondAccount, to: checksummedFutureAddress, value: 32000000000000000000,},);
+await web3.eth.sendTransaction({from: ganacheSecondAccount, to: checksummedFutureAddress, value: 32000000000000000000,},);
 
-// let hexstringNonce = `0x${decimalToHex(382)}`;
-// console.log(hexstringNonce);
-// console.log(typeof hexstringNonce);
-// let account = await web3.eth.personal.newAccount('');
-// console.log(account);
-// web3.eth.personal.unlockAccount(account, '');
-// let nonce = 0x00;
-// console.log(nonce);
-// console.log(typeof(nonce));
-// await web3.eth.sendTransaction({from: ganacheFirstAccount, to: account, value: 1000000000000000000,},);
-// let encoded = RLP.encode([account, nonce]);
-// console.log(encoded);
+let hexstringNonce = `0x${decimalToHex(382)}`;
+console.log(hexstringNonce);
+console.log(typeof hexstringNonce);
+let account = await web3.eth.personal.newAccount('');
+console.log(account);
+web3.eth.personal.unlockAccount(account, '');
+let nonce = 0x00;
+console.log(nonce);
+console.log(typeof(nonce));
+await web3.eth.sendTransaction({from: ganacheFirstAccount, to: account, value: 1000000000000000000,},);
+let encoded = RLP.encode([account, nonce]);
+console.log(encoded);
 
 web3.eth.getBalance(ganacheSecondAccount, function(err, result) {
     if (err) {
